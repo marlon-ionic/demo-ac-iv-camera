@@ -13,6 +13,7 @@ export class Auth0Service extends IonicAuth{
   authState$: Observable<boolean>;
   private authState: BehaviorSubject<boolean>;
   private navController: NavController;
+  private vaultService: VaultService;
 
   constructor(navController: NavController, platform: Platform, private storage: Storage,
               vaultService: VaultService, private zone: NgZone) {
@@ -26,7 +27,12 @@ export class Auth0Service extends IonicAuth{
     this.authState  = new BehaviorSubject(false);
     this.authState$ = this.authState.asObservable();
     this.navController = navController;
+    this.vaultService = vaultService;
     this.initState();
+  }
+
+  async updateUnlockTimeout(lockAfterBackgrounded?: number) {
+    await this.vaultService.update({lockAfterBackgrounded});
   }
 
   async isAuthenticated(): Promise<boolean> {

@@ -8,7 +8,7 @@ const config: IdentityVaultConfig = {
   type: VaultType.SecureStorage,
   customPasscodeInvalidUnlockAttempts: 2,
   shouldClearVaultAfterTooManyFailedAttempts: true,
-  unlockVaultOnLoad: false
+  unlockVaultOnLoad: true
 };
 
 @Injectable({
@@ -35,9 +35,11 @@ export class VaultService {
   }
 
   async update(params: any): Promise<void> {
-    await this.vault.updateConfig({
+    const c = {
       ...this.vault.config,
       ...params
-    });
+    };
+    await this.vault.updateConfig(c);
+    console.log('VaultService.updated', params, c);
   }
 }

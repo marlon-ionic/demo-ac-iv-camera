@@ -29,7 +29,6 @@ export class Tab1Page implements OnInit, OnDestroy {
 
   async takePicture() {
     try {
-      // this.auth.shouldAuthCheckOnResume = false;
       this.capturedImage = await Camera.getPhoto({
         quality: 75,
         allowEditing: true,
@@ -39,8 +38,6 @@ export class Tab1Page implements OnInit, OnDestroy {
     } catch(e) {
       console.log('getPhoto error', JSON.stringify(e));
       this.capturedImage = undefined;
-    } finally {
-      // this.auth.shouldAuthCheckOnResume = true;
     }
   }
 
