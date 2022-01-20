@@ -1,6 +1,8 @@
 <ion-content>
   <div class="splash">
     <ion-icon name="logo-ionic"></ion-icon>
-    <p class="label">Checking your login state</p>
+    <h3>One Moment Please</h3>
+    <p *ngIf="loadingStatus" class="label">{{loadingStatus}}</p>
+    <ion-spinner *ngIf="isLoading"></ion-spinner>
   </div>
 </ion-content>

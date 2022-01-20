@@ -4,41 +4,24 @@ import { NavController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { Auth0Service } from '../services/auth';
 
+
+/*
+LoginPage is a simple route to be a destination after a logout action has occurred.
+Although this could be rolled into the landing page, its best to keep seperate
+*/
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit, OnDestroy {
-
-  loginSuccessSubscription?: Subscription;
-  constructor(private authService: Auth0Service, private navController: NavController) { }
-
-  ngOnInit() {
-    // this.loginSuccessSubscription = this.authService.loginSuccess$.subscribe(_ => this.navController.navigateRoot(['home']));
-  }
-
-  ngOnDestroy(): void {
-      this.loginSuccessSubscription?.unsubscribe();
-  }
+export class LoginPage {
+  constructor(private navController: NavController) { }
 
   async login() {
-    console.log('LoginPage.login()');
-    try {
-      console.log('LoginPage.login() try');
-      // this.authService.setLoadingStatus(true);
-
-      // https://ionic.io/docs/auth-connect/securing-tokens#handling-privacy-screens
-      await Device.setHideScreenOnBackground(false);
-      await this.authService.login();
-      await Device.setHideScreenOnBackground(true);
-    } catch(e) {
-      await this.navController.navigateRoot(['/login'], {animated: false});
-    } finally {
-      console.log('LoginPage.login() finally');
-      // this.authService.setLoadingStatus(false);
-    }
-
+    // https://ionic.io/docs/auth-connect/securing-tokens#handling-privacy-screens
+    await Device.setHideScreenOnBackground(false);
+    await this.navController.navigateRoot(['/landing'], {animated: false});
+    await Device.setHideScreenOnBackground(true);
   }
 
 }
