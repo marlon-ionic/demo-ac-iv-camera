@@ -18,4 +18,10 @@
   .subtitle {
     color: #555;
   }
+  img {
+    border-radius: 50%;
+    height: auto;
+    max-width: 128px;
+    padding: .25em;
+  }
 }

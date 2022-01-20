@@ -20,6 +20,7 @@
 
   <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
   <div *ngIf="email" class="welcome">
+    <img *ngIf="picture" [src]="picture" alt="picture"/>
     <span class="title">You're Logged In!</span>
     <span class="subtitle">Welcome, {{email}}!</span>
   </div>

@@ -9,9 +9,7 @@ import { Auth0Service } from '../services/auth';
 })
 export class Tab1Page implements OnInit, OnDestroy {
   email: string;
-  password: string;
-  isVaultLocked = false;
-  hasSession = false;
+  picture?: string;
   capturedImage: Photo;
 
   constructor(private authService: Auth0Service) {}
@@ -19,6 +17,7 @@ export class Tab1Page implements OnInit, OnDestroy {
   async ngOnInit(): Promise<void> {
     const idToken = await this.authService.getIdToken();
     this.email = idToken?.email;
+    this.picture = idToken?.picture;
     console.log('id token', idToken);
   }
 
@@ -32,7 +31,7 @@ export class Tab1Page implements OnInit, OnDestroy {
     try {
       // this.auth.shouldAuthCheckOnResume = false;
       this.capturedImage = await Camera.getPhoto({
-        quality: 80,
+        quality: 75,
         allowEditing: true,
         resultType: CameraResultType.Uri
       });
