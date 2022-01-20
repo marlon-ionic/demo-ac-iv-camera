@@ -3,14 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { IonicStorageModule } from '@ionic/storage-angular';
+import { IonicStorageModule, Storage } from '@ionic/storage-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Auth0Service } from './services/auth';
 import { VaultService } from './services/auth/vault.service';
 
-const appInitFactory =
+const storageInitFactory =
+  (storage: Storage): (() => Promise<Storage>) =>
+  async () => await storage.create();
+
+const vaultServiceInitFactory =
   (vaultService: VaultService): (() => Promise<void>) =>
   async () => await vaultService.init();
 
@@ -22,9 +26,16 @@ const appInitFactory =
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy
-    },{
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: storageInitFactory,
+      deps: [Storage],
+      multi: true,
+    },
+    {
         provide: APP_INITIALIZER,
-        useFactory: appInitFactory,
+        useFactory: vaultServiceInitFactory,
         deps: [VaultService],
         multi: true,
       },

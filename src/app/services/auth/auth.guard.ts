@@ -15,6 +15,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
   async canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Promise<boolean | UrlTree> {
+      console.log('* AuthGuard.canActivate *');
       const isAuth = await this.authService.isAuthenticated();
       console.log('AuthGuard.isAuth', isAuth);
       if(!isAuth) {

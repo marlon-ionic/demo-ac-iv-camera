@@ -31,7 +31,9 @@ export class Auth0Service extends IonicAuth{
 
   async isAuthenticated(): Promise<boolean> {
     const isAuth = await super.isAuthenticated();
-    this.setState(isAuth);
+    this.zone.run(async () => {
+      this.setState(isAuth);
+    });
     return isAuth;
   }
 
