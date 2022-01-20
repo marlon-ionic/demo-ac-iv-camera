@@ -52,18 +52,21 @@
 	<true/>
   <key>NSCameraUsageDescription</key>
 	<string>$(PRODUCT_NAME) needs camera access to take photos</string>
-  <key>NSPhotoLibraryUsageDescription</key>
+  <key>NSPhotoLibraryAddUsageDescription</key>
 	<string>$(PRODUCT_NAME) needs access to add items to your photo library</string>
   <key>NSPhotoLibraryUsageDescription</key>
 	<string>$(PRODUCT_NAME) needs access to read your photo library</string>
   <key>NSFaceIDUsageDescription</key>
   <string>Use Face ID to authenticate yourself and login</string>
   <key>CFBundleURLTypes</key>
-    <dict>
-    <key>CFBundleURLSchemes</key>
-      <array>
-          <string>msauth</string>
-       </array>
-    </dict>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>io.ionic.demo.ac</string>
+        <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

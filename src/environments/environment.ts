@@ -7,12 +7,12 @@ import { Environment } from './environment.model';
 export const environment: Environment = {
   production: false,
   webHost: 'http://localhost:8100/',
-  appHost: 'msauth://',
+  appHost: 'io.ionic.demo.ac://',
   auth0: {
     authConfig: 'auth0',
-    clientID: '1XaS52xS0XDdE0NUYKEEnF047AC53USl',
+    clientID: 'yLasZNUGkZ19DGEjTmAITBfGXzqbvd00',
     discoveryUrl:
-      'https://dev-j3wl8n0b.auth0.com/.well-known/openid-configuration',
+      'https://dev-2uspt-sz.us.auth0.com/.well-known/openid-configuration',
     redirectUri: '',
     scope: 'openid offline_access email picture profile',
     audience: '',
