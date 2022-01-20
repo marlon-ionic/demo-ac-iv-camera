@@ -1,0 +1,7 @@
+{
+  "name": "AC IV Camera Demo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

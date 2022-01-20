@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.demo.acivcamera",
+	"appName": "AC IV Camera Demo",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
