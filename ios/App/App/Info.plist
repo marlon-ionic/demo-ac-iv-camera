@@ -50,5 +50,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+  <key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs camera access to take photos</string>
+  <key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to add items to your photo library</string>
+  <key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) needs access to read your photo library</string>
 </dict>
 </plist>
