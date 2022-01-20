@@ -28,6 +28,7 @@ export class VaultService {
       // eslint-disable-next-line max-len
       deviceSecurityType: isBiometricsEnabled && isSystemPasscodeSet ? DeviceSecurityType.Both : isBiometricsEnabled ? DeviceSecurityType.Biometrics : isSystemPasscodeSet ? DeviceSecurityType.SystemPasscode : DeviceSecurityType.None
     };
+    console.log('VaultService.init', updates);
     await this.update(updates);
   }
 
