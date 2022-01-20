@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 import { Camera, CameraResultType, Photo } from '@capacitor/camera';
 import { Auth0Service } from '../services/auth';
 
@@ -11,8 +12,9 @@ export class Tab1Page implements OnInit, OnDestroy {
   email: string;
   picture?: string;
   capturedImage: Photo;
+  sanitizedImageUrl?: SafeResourceUrl;
 
-  constructor(private authService: Auth0Service) {}
+  constructor(private authService: Auth0Service, private sanitizer: DomSanitizer ) {}
 
   async ngOnInit(): Promise<void> {
     const idToken = await this.authService.getIdToken();
@@ -35,10 +37,12 @@ export class Tab1Page implements OnInit, OnDestroy {
         allowEditing: true,
         resultType: CameraResultType.Uri
       });
-      console.log('image', this.capturedImage);
+      this.sanitizedImageUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.capturedImage.webPath);
+      console.log('image', this.capturedImage, this.sanitizedImageUrl,'bypassSecurityTrustResourceUrl');
     } catch(e) {
       console.log('getPhoto error', JSON.stringify(e));
       this.capturedImage = undefined;
+      this.sanitizedImageUrl = undefined;
     } finally {
       await this.authService.updateUnlockTimeout(1000);
     }

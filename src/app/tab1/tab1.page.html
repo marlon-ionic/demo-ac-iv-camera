@@ -25,7 +25,7 @@
     <span class="subtitle">Welcome, {{email}}!</span>
   </div>
   <ion-card *ngIf="capturedImage">
-    <img alt="captured image" [src]="capturedImage.webPath" />
+    <img alt="captured image" [src]="sanitizedImageUrl" />
     <ion-card-header>
       <ion-card-title>Captured Image</ion-card-title>
     </ion-card-header>
