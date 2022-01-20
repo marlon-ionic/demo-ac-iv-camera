@@ -1,8 +1,13 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
       Tab 1
     </ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="logout()">
+        Logout
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -13,5 +18,32 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
+  <div *ngIf="email" class="welcome">
+    <span class="title">You're Logged In!</span>
+    <span class="subtitle">Welcome, {{email}}!</span>
+  </div>
+  <ion-card *ngIf="capturedImage">
+    <img alt="captured image" [src]="capturedImage.webPath" />
+    <ion-card-header>
+      <ion-card-title>Captured Image</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item-group *ngIf="capturedImage.exif">
+        <ion-item-divider>
+          <ion-label>EXIF Metadata</ion-label>
+        </ion-item-divider>
+      </ion-item-group>
+      <ion-item *ngFor="let item of capturedImage.exif | keyvalue">
+        <ion-note slot="start">{{item.key}}</ion-note>
+        <ion-label>{{item.value}}</ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="takePicture()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
