@@ -29,6 +29,7 @@ export class Tab1Page implements OnInit, OnDestroy {
 
   async takePicture() {
     try {
+      await this.authService.updateUnlockTimeout(null);
       this.capturedImage = await Camera.getPhoto({
         quality: 75,
         allowEditing: true,
@@ -38,6 +39,8 @@ export class Tab1Page implements OnInit, OnDestroy {
     } catch(e) {
       console.log('getPhoto error', JSON.stringify(e));
       this.capturedImage = undefined;
+    } finally {
+      await this.authService.updateUnlockTimeout(1000);
     }
   }
 
